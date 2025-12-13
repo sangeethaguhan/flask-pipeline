@@ -105,8 +105,6 @@ Pipeline syntax**.
 | Post Actions          | Cleanup images and workspace                 | CI hygiene                   |
   -----------------------------------------------------------------------
 
-------------------------------------------------------------------------
-
 ## 4. Trivy Security Scan
 
 ### How the Scan Works
