@@ -95,24 +95,14 @@ The CI/CD pipeline is defined in the `Jenkinsfile` using **Declarative
 Pipeline syntax**.
 
 ### Pipeline Stages and Requirement Mapping
-
-  -----------------------------------------------------------------------
-  Jenkins Stage    Description                       Requirement Covered
-  ---------------- --------------------------------- --------------------
-  Checkout         Clones the Git repository         Source control
-                                                     integration
-
-  Build (Python    Creates virtualenv and installs   Application build
-  deps)            dependencies                      
-
-  Test             Runs unit tests using pytest      Automated testing
-
-  Docker Build     Builds Docker image               Containerization
-
-  Security Scan    Scans image for vulnerabilities   Security scanning
-  (Trivy)                                            
-
-  Post Actions     Cleanup images and workspace      CI hygiene
+| Jenkins Stage          | Description                                  | Requirement Covered         |
+|-----------------------|----------------------------------------------|------------------------------|
+| Checkout              | Clones the Git repository                    | Source control integration   |
+| Build (Python deps)   | Creates virtualenv and installs dependencies | Application build            |
+| Test                  | Runs unit tests using pytest                 | Automated testing            |
+| Docker Build          | Builds Docker image                          | Containerization             |
+| Security Scan (Trivy) | Scans image for vulnerabilities              | Security scanning            |
+| Post Actions          | Cleanup images and workspace                 | CI hygiene                   |
   -----------------------------------------------------------------------
 
 ------------------------------------------------------------------------
