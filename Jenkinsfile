@@ -51,23 +51,20 @@ pipeline {
         '''
       }
     }
-
 stage("Security Scan (Trivy)") {
   steps {
     sh '''
       set -euxo pipefail
 
-      # Fail on HIGH/CRITICAL
       docker run --rm \
         -v /var/run/docker.sock:/var/run/docker.sock \
         aquasec/trivy:latest \
         image --no-progress --severity HIGH,CRITICAL --exit-code 1 "${FULL_IMAGE}"
 
-      # Save report
       docker run --rm \
         -v /var/run/docker.sock:/var/run/docker.sock \
         aquasec/trivy:latest \
-        image --no-progress --severity LOW,MEDIUM,HIGH,CRITICAL "${FULL_IMAGE}" | tee trivy-report.txt
+        image --no-progress "${FULL_IMAGE}" | tee trivy-report.txt
     '''
   }
   post {
