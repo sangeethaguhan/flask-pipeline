@@ -89,6 +89,33 @@ production-grade WSGI server.
 
 ------------------------------------------------------------------------
 
+## Local Jenkins Setup (Controller)
+
+```bash
+docker pull jenkins/jenkins:lts
+
+docker volume create jenkins_home
+
+docker run -d --name jenkins   -p 8080:8080 -p 50000:50000   -v jenkins_home:/var/jenkins_home   -v /var/run/docker.sock:/var/run/docker.sock   jenkins/jenkins:lts
+```
+
+Get admin password:
+```bash
+docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+Open http://localhost:8080
+
+---
+
+## Jenkins Agent Setup
+
+```bash
+docker run -d --name docker-python-agent --user root -e JENKINS_URL=http://host.docker.internal:8080 -e JENKINS_AGENT_NAME=docker-python-agent -e JENKINS_SECRET=<FROM_JENKINS_NODE> -v /var/run/docker.sock:/var/run/docker.sock jenkins-agent-docker-python
+```
+
+---
+
 ## 3. Jenkins CI/CD Pipeline Overview
 
 The CI/CD pipeline is defined in the `Jenkinsfile` using **Declarative
