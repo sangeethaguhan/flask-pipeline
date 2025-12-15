@@ -211,7 +211,7 @@ docker run -d --name docker-python-agent \
 | Test                     | Runs unit tests using pytest                 | Automated testing          |
 | Docker Build             | Builds Docker image                          | Containerization           |
 | Security Scan (Trivy)    | Scans image for vulnerabilities              | Security scanning          |
-| Post Actions             | Cleanup images and workspace                 | CI hygiene                 |
+| Post Actions             | Cleanup workspace                            | CI hygiene                 |
 
 ---
 
