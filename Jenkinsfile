@@ -19,7 +19,7 @@ pipeline {
       }
     }
 
-    stage("Build (Python dependencies)") {
+    stage("Build Python dependencies") {
       steps {
         sh '''
           set -euxo pipefail
