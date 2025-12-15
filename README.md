@@ -160,7 +160,7 @@ In Jenkins UI → Manage Jenkins → Nodes
 
   -secret <LONG_SECRET>
 
-**Copy that secret and use as 'JENKINS_SECRET'value in the below docker run command.**
+**Copy that secret and use as 'JENKINS_SECRET' value in the below docker run command.**
 
 Run the agent container:
 
