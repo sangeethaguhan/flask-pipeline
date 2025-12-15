@@ -113,7 +113,7 @@ Install **Suggested Plugins** and create an admin user.
 
 ## 4. Jenkins Agent Setup (Docker-Capable)
 
-Create a file `Dockerfile.jenkins-agent` in your local:
+Create a file `Dockerfile.jenkins-agent` in your local computer:
 
 ```dockerfile
 FROM jenkins/inbound-agent:latest-jdk17
