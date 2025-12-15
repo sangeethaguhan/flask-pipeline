@@ -56,13 +56,6 @@ Access the application:
 ```
 http://127.0.0.1:5001
 ```
-
-Run unit tests:
-
-```bash
-pytest
-```
-
 ---
 
 ## 2. Build and Run the Application with Docker
