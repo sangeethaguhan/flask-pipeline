@@ -19,7 +19,7 @@ pipeline {
       }
     }
 
-    stage("Build (Python deps)") {
+    stage("Build (Python dependencies)") {
       steps {
         sh '''
           set -euxo pipefail
@@ -74,5 +74,4 @@ stage("Security Scan (Trivy)") {
   }
 }
   }
-
 }
