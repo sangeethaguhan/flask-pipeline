@@ -113,6 +113,8 @@ Install **Suggested Plugins** and create an admin user.
 
 ## 4. Jenkins Agent Setup (Docker-Capable)
 
+This Jenkins agent is a custom inbound Docker-based agent that provides Python build tooling and the Docker CLI, allowing Jenkins pipelines to build, test, containerize, and security-scan applications by interacting with the host Docker daemon through the Docker socket.
+
 Create a file `Dockerfile.jenkins-agent` in your local computer:
 
 ```dockerfile
