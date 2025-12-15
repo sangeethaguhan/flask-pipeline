@@ -4,4 +4,4 @@ def test_root_returns_hello_world():
     c = app.test_client()
     r = c.get("/")
     assert r.status_code == 200
-    assert b"Hello World!" in r.data
+    assert b"Hello World, this is Palo Alto Networks!" in r.data
