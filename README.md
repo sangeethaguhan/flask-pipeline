@@ -153,6 +153,7 @@ In Jenkins UI → Manage Jenkins → Nodes
 - New Node
 - Name: `docker-python-agent`
 - Type: Permanent Agent
+- Remote root directory : /home/jenkins
 - Labels: `docker-python`
 - Launch method: **Launch agent by connecting it to the controller**
 - Save
