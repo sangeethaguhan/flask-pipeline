@@ -207,11 +207,10 @@ docker run -d --name docker-python-agent \
 | Jenkins Stage            | Description                                  | Requirement Covered        |
 |--------------------------|----------------------------------------------|----------------------------|
 | Checkout                 | Clones the Git repository                    | Source control integration |
-| Build (Python deps)      | Creates virtualenv and installs dependencies | Application build          |
+| Build Python dependencies| Creates virtualenv and installs dependencies | Application build          |
 | Test                     | Runs unit tests using pytest                 | Automated testing          |
 | Docker Build             | Builds Docker image                          | Containerization           |
 | Security Scan (Trivy)    | Scans image for vulnerabilities              | Security scanning          |
-| Post Actions             | Cleanup workspace                            | CI hygiene                 |
 
 ---
 
