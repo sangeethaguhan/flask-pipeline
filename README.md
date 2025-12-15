@@ -229,52 +229,78 @@ Policy:
 
 ---
 
-## 9. Verification
-Make sure your Flask app is running on port 5001
-If running locally (host Python)
+## 9. Verification - Test the Docker Image from Jenkins Agent
 
-In hello.py:
+This section verifies that the Docker image built by the Jenkins pipeline is **functional and accessible**.
 
-```if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
+> **Key idea**: The Jenkins agent container has access to the **host Docker daemon** via the mounted Docker socket (`/var/run/docker.sock`).  
+> Running `docker run` inside the agent starts containers on the **host**, not inside the agent itself.
+
+---
+
+### Step 1: Exec into the Jenkins Agent
+
+From your **host machine**:
+
+```bash
+docker exec -it docker-python-agent bash
 ```
 
-Then start it on your host:
+You should see a prompt like:
 
-```python hello.py```
+```text
+root@<container-id>:/home/jenkins#
+```
 
+---
 
-Now test again in local laptop:
+### Step 2: Run the Application Container (Inside the Agent)
 
-```curl http://localhost:5001```
+Run the container using the image built by Jenkins:
 
+```bash
+docker run -d --name flask-test   -p 5001:5001   flask-hello:<BUILD_NUMBER>
+```
 
-Then from inside Jenkins agent:
+Example:
 
-```docker exec -it docker-python-agent bash -lc "curl -v http://host.docker.internal:5001"```
+```bash
+docker run -d --name flask-test -p 5001:5001 flask-hello:24
+```
 
-** Curl call from inside docker container **
-```root@85b4e4d423fd:/home/jenkins# docker exec -it docker-python-agent bash -lc "curl -v http://host.docker.internal:5001"
-* Host host.docker.internal:5001 was resolved.
-* IPv6: fdc4:f303:9324::254
-* IPv4: 192.168.65.254
-*   Trying [fdc4:f303:9324::254]:5001...
-* Immediate connect fail for fdc4:f303:9324::254: Network is unreachable
-*   Trying 192.168.65.254:5001...
-* Connected to host.docker.internal (192.168.65.254) port 5001
-* using HTTP/1.x
-> GET / HTTP/1.1
-> Host: host.docker.internal:5001
-> User-Agent: curl/8.14.1
-> Accept: */*
-> 
-* Request completely sent off
-< HTTP/1.1 200 OK
-< Server: Werkzeug/3.1.4 Python/3.12.2
-< Date: Mon, 15 Dec 2025 06:19:47 GMT
-< Content-Type: text/html; charset=utf-8
-< Content-Length: 40
-< Connection: close
-< 
-* shutting down connection #0
-Hello World, this is Palo Alto Networks!root@85b4e4d423fd:/home/jenkins# ```
+This:
+- Starts the Flask application container
+- Exposes port **5001** on the host
+
+---
+
+### Step 3: Verify Connectivity from the Jenkins Agent
+
+Still **inside the Jenkins agent**, run:
+
+```bash
+curl http://host.docker.internal:5001
+```
+
+Expected response:
+
+```text
+Hello World, this is Palo Alto Networks!
+```
+
+✅ This confirms:
+- The Docker image runs correctly
+- Port mapping works
+- Jenkins agent can validate the application
+
+---
+
+### Step 4: (Optional) Verify from Host Browser
+
+From your host machine browser:
+
+```
+http://localhost:5001
+```
+
+---
