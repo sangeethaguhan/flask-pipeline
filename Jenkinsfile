@@ -75,13 +75,4 @@ stage("Security Scan (Trivy)") {
 }
   }
 
-  post {
-    always {
-      sh '''
-        set +e
-        docker rmi "${FULL_IMAGE}" >/dev/null 2>&1 || true
-      '''
-      cleanWs()
-    }
-  }
 }
