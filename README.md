@@ -145,12 +145,20 @@ docker build -t jenkins-agent-docker-python -f Dockerfile.jenkins-agent .
 
 ---
 
-## 5. Register and Run Jenkins Agent
+## 5. Register and Run Jenkins Agent(from Jenkins UI)
 
-Create a node in Jenkins:
+In Jenkins UI → Manage Jenkins → Nodes
+- New Node
 - Name: `docker-python-agent`
+- Type: Permanent Agent
 - Labels: `docker-python`
 - Launch method: **Launch agent by connecting it to the controller**
+- Save
+- Jenkins will show you a command with a secret like:
+
+  -secret <LONG_SECRET>
+
+**Copy that secret and use as 'JENKINS_SECRET' in the below docker run command.**
 
 Run the agent container:
 
