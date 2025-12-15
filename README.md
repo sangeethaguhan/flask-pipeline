@@ -221,3 +221,27 @@ Policy:
 - **LOW / MEDIUM** → Report only
 
 ---
+
+## 9. Verification
+Make sure your Flask app is running on port 5001
+If running locally (host Python)
+
+In hello.py:
+
+```if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001)
+```
+
+Then start it on your host:
+
+```python hello.py```
+
+
+Now test again in local laptop:
+
+```curl http://localhost:5001```
+
+
+Then from inside Jenkins agent:
+
+```docker exec -it docker-python-agent bash -lc "curl -v http://host.docker.internal:5001"```
