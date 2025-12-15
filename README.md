@@ -245,3 +245,29 @@ Now test again in local laptop:
 Then from inside Jenkins agent:
 
 ```docker exec -it docker-python-agent bash -lc "curl -v http://host.docker.internal:5001"```
+
+** Curl call from inside docker container **
+```root@85b4e4d423fd:/home/jenkins# docker exec -it docker-python-agent bash -lc "curl -v http://host.docker.internal:5001"
+* Host host.docker.internal:5001 was resolved.
+* IPv6: fdc4:f303:9324::254
+* IPv4: 192.168.65.254
+*   Trying [fdc4:f303:9324::254]:5001...
+* Immediate connect fail for fdc4:f303:9324::254: Network is unreachable
+*   Trying 192.168.65.254:5001...
+* Connected to host.docker.internal (192.168.65.254) port 5001
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: host.docker.internal:5001
+> User-Agent: curl/8.14.1
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: Werkzeug/3.1.4 Python/3.12.2
+< Date: Mon, 15 Dec 2025 06:19:47 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 40
+< Connection: close
+< 
+* shutting down connection #0
+Hello World, this is Palo Alto Networks!root@85b4e4d423fd:/home/jenkins# ```
