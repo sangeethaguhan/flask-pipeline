@@ -69,12 +69,11 @@ docker build -t flask-hello:local .
 ### Run the Container
 
 ```bash
-docker run --rm -p 5001:5001 flask-hello:local
 
 docker run -d -p 5001:5001 flask-hello:local
 ```
 
-Access the application:
+Access the application, built via Docker now:
 
 ```
 http://localhost:5001
