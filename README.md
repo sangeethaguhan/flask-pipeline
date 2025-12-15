@@ -86,10 +86,8 @@ http://localhost:5001
 ### Start Jenkins (Controller)
 
 You expose two ports:
-
-Port	Purpose
-8080	Jenkins Web UI (browser access)
-50000	Agent-to-controller communication (JNLP)
+ - 8080	: Jenkins Web UI (browser access)
+ - 50000 : Agent-to-controller communication (JNLP)
 
 ```bash
 docker pull jenkins/jenkins:lts
